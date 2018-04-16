@@ -1,0 +1,42 @@
+<div class="container" align="center">
+  <h1>Products</h1>
+  
+
+  <div class="form-group", align="left">
+    <%= form_tag products_all_products_path, method: 'post' do%>
+      <%= collection_select(:category, :id,  Category.all, :id, :name, prompt: true, selected: (params[:product] ? params[:product][:ancestry] : nil), id: 'category_select')%>
+      <%= submit_tag 'Filter', class:"btn btn-default"%>
+      <%= link_to "Reset", products_path, class:"btn btn-default"%>
+
+    <%end%>
+  </div>
+<hr>
+  <div align="right">
+    <%= link_to 'Create Product', new_product_path, class: "btn btn-primary" %>
+    <%= link_to 'Create Category', new_category_path, class: "btn btn-primary" %>
+  </div>
+  <table data-toggle="table">
+    <thead>
+      <tr>
+        <th>Product Name</th>
+        <th>Category</th>
+        <th>Release Date</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @products.each do |product| %>
+        <tr>
+          <td><%= link_to(product.product_name, product) %></td>
+          <td><%= product.category.name %></td>
+          <td><%= product.release_date%></td>
+          <td><%= number_to_currency(product.price, unit: "$", separator: ",", delimiter: "") %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div id="paginator">
+      <%= paginate @products %>
+  </div>
+  
+</div>

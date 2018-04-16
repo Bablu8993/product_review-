@@ -1,0 +1,28 @@
+<div class="container" align="center">
+  <h1>Categories</h1>
+  <hr>
+  <div align="right">
+    <%= link_to 'All Products', products_path, class: "btn btn-primary" %>
+    <%= link_to 'Create Category', new_category_path, class: "btn btn-primary" %>
+  </div>
+  <table data-toggle="table">
+    <thead>
+      <tr>
+        <th>Category Name</th>
+        <th>Release Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @categories.each do |category| %>
+        <tr>
+          <td><%= category.name%></td>
+          <td><%= category.updated_at%></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div id="paginator">
+      <%= paginate @categories %>
+  </div>
+  
+</div>

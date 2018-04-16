@@ -1,0 +1,10 @@
+
+<div class="log-form">
+  <%= simple_form_for @user do |f| %>
+    <%= f.input :user_name, label: 'Username ', error: 'Username is mandatory, please specify one' %>
+    <%= f.input :email, placeholder: 'user@domain.com' %>
+    <%= f.input :password, label: 'Password', hint: 'No special characters.' %>
+    <%= f.input :password_confirmation, label: 'Confirm Password', hint: 'Password length must be greater than 6' %>
+    <%= f.button :submit ,"Sing Up", class: "btn btn-success"%>
+  <% end %>
+</div>  

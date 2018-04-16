@@ -1,0 +1,27 @@
+<style type="text/css">
+  #error_explanation{
+    color: red;
+  }
+</style>
+<div class="log-form">
+  <%= simple_form_for @product do |f| %>
+      <% if @product.errors.any? %>
+      <div id="error_explanation">
+        <div class="alert alert-error">
+           The form contains <%= pluralize(@product.errors.count, "error") %>.
+        </div>
+        <ul>
+          <% @product.errors.full_messages.each do |msg| %>
+            <li>* <%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+        <%= 'Select category of product'%><br />
+        <%= collection_select(:product, :category_id,  Category.all, :id, :name, prompt: true) %><br />
+        <%= f.input :product_name, label: 'Product name' %>
+        <%= f.input :release_date, label: 'Release date' %>
+        <%= f.input :price, label: 'Price' %>
+        <%= f.submit "Create Product", class:"btn btn-success"%>
+  <% end %>
+</div>
